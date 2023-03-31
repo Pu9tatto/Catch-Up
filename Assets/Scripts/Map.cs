@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System.Collections.Generic;
 
 public class Map : MonoBehaviour
 {
@@ -8,17 +8,21 @@ public class Map : MonoBehaviour
     [SerializeField] private Vector2 _startPosMap;
     [SerializeField] private int _heightMap;
     [SerializeField] private int _widthMap;
+    [SerializeField] private List<string> _letters;
 
-
-    private void Start()
+    public Vector2 StartPos { get { return _startPosMap; } }
+    private void Awake()
     {
-        CreateMap(_startPosMap, _heightMap, _widthMap);
+        CreateMap(_startPosMap, _heightMap, _widthMap);       
     }
 
     private void CreateMap(Vector2 startPos, int height, int width)
     {
         for(int i = 0; i < width; i++)
             for(int j = 0; j < height; j++)
-                Instantiate(_tile, new Vector2(startPos.x + i, startPos.y + j), Quaternion.identity, transform);
+            {
+                Tile newTile = Instantiate(_tile, new Vector2(startPos.x + i, startPos.y + j), Quaternion.identity, transform);
+                newTile.AssignLetter(_letters[Random.Range(0, _letters.Count)]);
+            }
     }
 }
