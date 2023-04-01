@@ -15,10 +15,17 @@ public class Tile : MonoBehaviour
 
     public string Letter() => _letter;
 
-    public void AssignLetter(string letter)
+    public void AssignLetter(char letter)
     {
-        _letter = letter;
-        _textLetter.WriteLetter(letter);
+        string letterString = letter.ToString();
+        _letter = letterString;
+        _textLetter.WriteLetter(letterString);
+    }
+
+    public void ClearLetter()
+    {
+        _letter = string.Empty;
+        _textLetter.WriteLetter("");
     }
 
     public bool WithPlayer { get; private set; } = false;

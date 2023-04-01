@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class TileLetter : MonoBehaviour
 {
-    private TMP_Text _textLetter;
+    public TMP_Text TextLetter{get; private set;}
 
     private void Awake()
     {
-        _textLetter = GetComponent<TMP_Text>();
+        TextLetter = GetComponent<TMP_Text>();
     }
 
     public void WriteLetter(string letter)
     {
-        _textLetter.text = letter;
+        TextLetter.text = letter;
     }
 
 }
